@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* azul elegante */
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   font-family: 'Segoe UI', sans-serif;
   color: white;
 }
@@ -25,7 +25,7 @@ body {
 
 .heart { top: -10px; color: rgba(79,195,255,0.7); animation: fall linear forwards; }
 .upHeart { bottom: 50px; color: rgba(79,195,255,0.9); animation: rise 2s forwards; }
-.tulip { top: -20px; color: rgba(135,206,250,0.8); animation: fall linear forwards; }
+.tulip { top: -20px; animation: fall linear forwards; }
 
 @keyframes fall { to { transform: translateY(110vh); opacity: 0; } }
 @keyframes rise { 0% { transform: translateY(0) scale(0.7); opacity:1; } 100% { transform: translateY(-100px) scale(1.2); opacity:0; } }
@@ -59,7 +59,7 @@ button { padding:12px 28px; border-radius:30px; border:none; font-size:16px; cur
 <body>
 
 <div class="card">
-  <h1>Para mi tati 💙</h1>
+  <h1>Para mi Tati💙</h1>
   <p style="opacity:0.8;">Hay algo que quiero preguntarte...</p>
   <div class="question">¿Quieres ser mi San Valentín? ✨</div>
   <div class="buttons">
@@ -92,7 +92,7 @@ function moveNo() {
   yesBtn.style.transform = `scale(${1+(1-scale)})`;
 }
 
-/* Corazones y tulipanes cayendo */
+/* Corazones cayendo */
 function createHeart(){
   const heart=document.createElement("div");
   heart.classList.add("heart");
@@ -103,16 +103,22 @@ function createHeart(){
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),7000);
 }
+
+/* Tulipanes cayendo multicolores */
 function createTulip(){
-  const tulip=document.createElement("div");
+  const tulip = document.createElement("div");
   tulip.classList.add("tulip");
   tulip.innerHTML="🌷";
   tulip.style.left=Math.random()*100+"vw";
   tulip.style.fontSize=Math.random()*15+15+"px";
-  tulip.style.animationDuration=Math.random()*4+3+"s";
+
+  const colors = ["#1e90ff","#ff69b4","#dda0dd","#9370db","#87cefa"];
+  tulip.style.color = colors[Math.floor(Math.random()*colors.length)];
+
   document.body.appendChild(tulip);
   setTimeout(()=>tulip.remove(),7000);
 }
+
 setInterval(createHeart,500);
 setInterval(createTulip,700);
 
@@ -124,6 +130,7 @@ document.addEventListener("touchstart", ()=>music.play().catch(()=>{}));
 function accepted(){
   const fillInterval = setInterval(()=>{
     for(let i=0;i<3;i++){
+      // Corazones grandes
       const heart=document.createElement("div");
       heart.classList.add("heart");
       heart.innerHTML="💙";
@@ -132,11 +139,14 @@ function accepted(){
       document.body.appendChild(heart);
       setTimeout(()=>heart.remove(),7000);
 
+      // Tulipanes grandes multicolores
       const tulip=document.createElement("div");
       tulip.classList.add("tulip");
       tulip.innerHTML="🌷";
       tulip.style.left=Math.random()*100+"vw";
       tulip.style.fontSize=(Math.random()*30+20)+"px";
+      const colors = ["#1e90ff","#ff69b4","#dda0dd","#9370db","#87cefa"];
+      tulip.style.color = colors[Math.floor(Math.random()*colors.length)];
       document.body.appendChild(tulip);
       setTimeout(()=>tulip.remove(),7000);
     }
@@ -146,63 +156,12 @@ function accepted(){
   document.body.innerHTML=`
     <div style="display:flex;justify-content:center;align-items:center;height:100vh;text-align:center;background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:white;font-family:'Segoe UI';overflow:hidden;">
       <div>
-        <h1 style="font-size:32px;">Gracias por aparecer en mi vida y perdón por no poder cortar la distancia entre nosotros 💙</h1>
-        <p style="opacity:0.9;margin-top:20px;">Prometo que será inolvidable ✨</p>
+        <h1 style="font-size:32px;">Gracias por llegar a mi vida, te prometo que hare hasta lo imposible para que siempre te sientas amada 💙</h1>
+        <p style="opacity:0.9;margin-top:20px;">Te amo preciosa ✨</p>
       </div>
     </div>
   `;
 
-  music.play().catch(()=>{});
-}
-</script>
-
-</body>
-</html>  tulip.style.fontSize=Math.random()*15+15+"px";
-  tulip.style.animationDuration=Math.random()*4+3+"s";
-  document.body.appendChild(tulip);
-  setTimeout(()=>tulip.remove(),7000);
-}
-setInterval(createHeart,500);
-setInterval(createTulip,700);
-
-/* Forzar autoplay si navegador bloquea */
-document.addEventListener("click", ()=>music.play().catch(()=>{}));
-document.addEventListener("touchstart", ()=>music.play().catch(()=>{}));
-
-/* Presiona Sí: efectos cinematográficos */
-function accepted(){
-  // Fondo animado lleno de corazones y tulipanes
-  const fillInterval = setInterval(()=>{
-    for(let i=0;i<3;i++){ // más cantidad para efecto "lluvia"
-      const heart=document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML="💖";
-      heart.style.left=Math.random()*100+"vw";
-      heart.style.fontSize=(Math.random()*30+20)+"px";
-      document.body.appendChild(heart);
-      setTimeout(()=>heart.remove(),7000);
-
-      const tulip=document.createElement("div");
-      tulip.classList.add("tulip");
-      tulip.innerHTML="🌷";
-      tulip.style.left=Math.random()*100+"vw";
-      tulip.style.fontSize=(Math.random()*30+20)+"px";
-      document.body.appendChild(tulip);
-      setTimeout(()=>tulip.remove(),7000);
-    }
-  },150);
-
-  // Mensaje final centrado
-  document.body.innerHTML=`
-    <div style="display:flex;justify-content:center;align-items:center;height:100vh;text-align:center;background:linear-gradient(135deg,#ffdde1,#ee9ca7,#ffc0cb);color:white;font-family:'Segoe UI';overflow:hidden;">
-      <div>
-        <h1 style="font-size:32px;">Se que la distancia no ayuda pero igual quiero que seas parte de mi vida  💖</h1>
-        <p style="opacity:0.9;margin-top:20px;">Prometo que será inolvidable ✨</p>
-      </div>
-    </div>
-  `;
-
-  // Reiniciamos la música
   music.play().catch(()=>{});
 }
 </script>
